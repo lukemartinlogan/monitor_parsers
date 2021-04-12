@@ -4,8 +4,20 @@ A simple tool for monitoring and profiling applications.
 
 ## Installation
 
+### For Regular Users
 ```{bash}
-cd /path/to/parsers  
+cd /path/to/monitor_parsers  
+sudo su
+python3 -m pip install -r requirements.txt  
+python3 setup.py sdist bdist_wheel  
+python3 -m pip install dist/*.whl  
+rm -r dist build *.egg_info MANIFEST  
+```
+
+### For Developers
+```{bash}
+cd /path/to/monitor_parsers  
+sudo su
 python3 -m pip install -r requirements.txt  
 sudo python3 setup.py develop
 ```
@@ -13,7 +25,13 @@ sudo python3 setup.py develop
 ### Uninstallation
 
 ```{bash}
-python3 -m pip uninstall luxio
+python3 -m pip uninstall monitor_parsers
+```
+
+### Dependencies
+
+```{bash}
+sudo apt-get install valgrind nethogs sysstat
 ```
 
 ## Usage

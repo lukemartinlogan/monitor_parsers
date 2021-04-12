@@ -44,6 +44,21 @@ monitor -dir "/path/to/outdir" -r [refresh-rate (sec)] -cmd "[COMMAND]" -t [moni
 
 ## Examples
 
+This is an example of collecting raw monitor data:
+```{bash}
+sudo su
+mkdir ${HOME}/sample
+monitor -cmd "dd if=/dev/urandom of=${HOME}/sample/test.bin bs=1M count=500" -dir ${HOME}/sample -t monitor
+```
+
+This is an example of parsing the monitor data and producing CSVs (still use the cmd):
+```{bash}
+sudo su
+mkdir ${HOME}/sample
+monitor -cmd "dd if=/dev/urandom of=${HOME}/sample/test.bin bs=1M count=500" -dir ${HOME}/sample -t parse
+```
+
+This is an example of monitoring and parsing at the same time (may not work):
 ```{bash}
 sudo su
 mkdir ${HOME}/sample

@@ -25,7 +25,7 @@ sudo python3 setup.py develop
 ### Uninstallation
 
 ```{bash}
-python3 -m pip uninstall monitor_parsers
+python3 -m pip uninstall monitor
 ```
 
 ### Dependencies

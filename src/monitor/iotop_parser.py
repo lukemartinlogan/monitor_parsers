@@ -1,5 +1,6 @@
 import sys,os
 from .monitor import Monitor
+import pandas as pd
 
 class IOTopParser(Monitor):
     def __init__(self, dir, refresh):
@@ -12,14 +13,17 @@ class IOTopParser(Monitor):
 
     def monitor_pid(self, pid):
         print(f"MONITORING WITH IOTOP on pid={pid}")
-        self._launch(f"iotop  -d {self.refresh} -o -b -p {pid}".split(), stdout=self.raw_path)
+        self._launch(f"iotop  -d {self.refresh} -k -o -b -p {pid}".split(), stdout=self.raw_path)
 
     def parse(self):
         print(f"PARSING IOTOP")
-        with open(self.csv_path, 'w') as CSVouput, open(self.raw_path, 'r') as raw_log:
+        log = []
+        with open(self.raw_path, 'r') as raw_log:
             for line in raw_log.readlines():
-                if line.decode().split()[0] == 'Actual':
-                    #print(line.decode(), " ||| ", line.decode().split()[6])
-                    print((line.decode().split()[-2]).strip())
-                    CSVouput.write((line.decode().split()[-2]).strip())
-                    CSVouput.write("\n")
+                line = line.split()
+                if line[0] == 'Total':
+                    row = [line[3], line[9]]
+                if line[0] == 'Current':
+                    row += [line[3], line[9]]
+                    log.append(row)
+        pd.DataFrame(log, columns=['total_read_bw', 'total_write_bw', 'current_read_bw', 'current_write_bw']).to_csv(self.csv_path, index=False)

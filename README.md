@@ -7,7 +7,7 @@ A simple tool for monitoring and profiling applications.
 ```{bash}
 cd /path/to/parsers  
 python3 -m pip install -r requirements.txt  
-python3 setup.py develop --user
+sudo python3 setup.py develop
 ```
 
 ### Uninstallation
@@ -27,7 +27,7 @@ monitor -dir "/path/to/outdir" -r [refresh-rate (sec)] -cmd "[COMMAND]" -t [moni
 ## Examples
 
 ```{bash}
+sudo su
 mkdir ${HOME}/sample
 monitor -cmd "dd if=/dev/urandom of=${HOME}/sample/test.bin bs=1M count=500" -dir ${HOME}/sample -t all
-monitor -cmd "ping www.google.com -c 5" -dir ${HOME}/sample -t all
 ```

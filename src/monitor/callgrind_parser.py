@@ -12,7 +12,7 @@ class CallgrindParser(Monitor):
 
     def mointor_cmd(self, command):
         print(f"MONITORING WITH CALLGRIND using cmd={command}")
-        self._launch(f"valgrind --tool=callgrind --with-children=yes --dump-instr=yes --trace-jump=yes --callgrind-out-file={self.raw_path} {command}".split())
+        self._launch(f"valgrind --tool=callgrind --dump-instr=yes --trace-jump=yes --callgrind-out-file={self.raw_path} {command}".split())
 
     def monitor_pid(self, pid):
         raise Exception("Cannot monitor using PID for callgrind")

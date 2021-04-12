@@ -5,8 +5,8 @@ A simple tool to collect monitoring data for running processes or processes to b
 
 USAGE: monitor -dir "/path/to/outdir" -r [refresh-rate (sec)] -cmd "[COMMAND]"
 EXAMPLE:
-monitor -cmd "dd if=/dev/urandom of=/home/lukemartinlogan/Documents/Projects/PhD/parsers/sample/test.bin bs=1M count=500" -dir /home/lukemartinlogan/Documents/Projects/PhD/parsers/sample -t all
-monitor -cmd "ping www.google.com -c 5" -dir /home/lukemartinlogan/Documents/Projects/PhD/parsers/sample -t all
+monitor -cmd "dd if=/dev/urandom of=/home/lukemartinlogan/Documents/Projects/PhD/monitor_parsers/sample/test.bin bs=1M count=500" -dir /home/lukemartinlogan/Documents/Projects/PhD/monitor_parsers/sample -t all
+monitor -cmd "ping www.google.com -c 5" -dir /home/lukemartinlogan/Documents/Projects/PhD/monitor_parsers/sample -t all
 """
 
 import sys,os

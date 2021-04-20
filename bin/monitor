@@ -67,6 +67,6 @@ if __name__ == '__main__':
     if args.mode == 'parse' or args.mode == 'all':
         #Parse the outputs
         callgrind.parse()
-        top.parse()
+        #top.parse()
         iotop.parse()
         nethogs.parse()

@@ -8,10 +8,10 @@ from .monitor import Monitor
 import pandas as pd
 
 class NethogsParser(Monitor):
-    def __init__(self, dir, refresh, cmd):
-        super().__init__(dir, refresh)
-        self.raw_path = os.path.join(self.dir, "nethogs_raw.log")
-        self.csv_path = os.path.join(self.dir, "nethogs.csv")
+    def __init__(self, dir, rank, refresh, cmd):
+        super().__init__(dir, rank, refresh)
+        self.raw_path = os.path.join(self.dir, f"nethogs_raw_{self.rank}.log")
+        self.csv_path = os.path.join(self.dir, f"nethogs_{self.rank}.csv")
         self.exe_path = self._exe_path(cmd.split()[0])
 
     def mointor_cmd(self, command):

@@ -3,10 +3,10 @@ from .monitor import Monitor
 import pandas as pd
 
 class IOTopParser(Monitor):
-    def __init__(self, dir, refresh):
-        super().__init__(dir, refresh)
-        self.raw_path = os.path.join(self.dir, "iotop_raw.log")
-        self.csv_path = os.path.join(self.dir, "iotop.csv")
+    def __init__(self, dir, rank, refresh):
+        super().__init__(dir, rank, refresh)
+        self.raw_path = os.path.join(self.dir, f"iotop_raw_{self.rank}.log")
+        self.csv_path = os.path.join(self.dir, f"iotop_{self.rank}.csv")
 
     def mointor_cmd(self, command):
         raise Exception("Monitor using launch not implemented for iotop")

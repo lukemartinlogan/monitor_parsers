@@ -23,10 +23,10 @@ class TopParser(Monitor):
              'Total Mem',
              'Shared Memory']
 
-    def __init__(self, dir, refresh):
-        super().__init__(dir, refresh)
-        self.raw_path = os.path.join(self.dir, "top_raw.log")
-        self.csv_path = os.path.join(self.dir, "top.csv")
+    def __init__(self, dir, rank, refresh):
+        super().__init__(dir, rank, refresh)
+        self.raw_path = os.path.join(self.dir, f"top_raw_{self.rank}.log")
+        self.csv_path = os.path.join(self.dir, f"top_{self.rank}.csv")
 
     def mointor_cmd(self, command):
         raise Exception("Monitor using launch not implemented for top")

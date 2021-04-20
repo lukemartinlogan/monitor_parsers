@@ -17,6 +17,11 @@ from monitor.top_parser import TopParser
 from monitor.iotop_parser import IOTopParser
 from monitor.callgrind_parser import CallgrindParser
 
+
+ENABLE_MPI = True
+if ENABLE_MPI:
+    from mpi4py import MPI
+
 import argparse, configparser
 class ArgumentParser:
     def __init__(self):
@@ -42,11 +47,17 @@ if __name__ == '__main__':
     if args.cmd == None:
         exit(1)
 
-    timer = TimeParser(args.log_dir, args.refresh)
-    callgrind = CallgrindParser(args.log_dir, args.refresh, args.lang)
-    nethogs = NethogsParser(args.log_dir, args.refresh, 'valgrind')
-    top = TopParser(args.log_dir, args.refresh)
-    iotop = IOTopParser(args.log_dir, args.refresh)
+    if ENABLE_MPI:
+        comm = MPI.COMM_WORLD
+        rank = comm.Get_rank()
+    else:
+        rank = 0
+
+    timer = TimeParser(args.log_dir, rank, args.refresh)
+    callgrind = CallgrindParser(args.log_dir, rank, args.refresh, args.lang)
+    nethogs = NethogsParser(args.log_dir, rank, args.refresh, 'valgrind')
+    top = TopParser(args.log_dir, rank, args.refresh)
+    iotop = IOTopParser(args.log_dir, rank, args.refresh)
 
     if args.mode == 'monitor' or args.mode == 'all':
         #Start monitoring the program

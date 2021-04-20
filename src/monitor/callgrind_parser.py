@@ -3,12 +3,12 @@ from .monitor import Monitor
 import pandas as pd
 
 class CallgrindParser(Monitor):
-    def __init__(self, dir, refresh, lang):
-        super().__init__(dir, refresh)
+    def __init__(self, dir, rank, refresh, lang):
+        super().__init__(dir, rank, refresh)
         self.lang = lang
-        self.raw_path = os.path.join(self.dir, "callgrind_raw.log")
-        self.pretty_path = os.path.join(self.dir, "callgrind_pretty.log")
-        self.csv_path = os.path.join(self.dir, "callgrind.csv")
+        self.raw_path = os.path.join(self.dir, f"callgrind_raw_{self.rank}.log")
+        self.pretty_path = os.path.join(self.dir, f"callgrind_pretty_{self.rank}.log")
+        self.csv_path = os.path.join(self.dir, f"callgrind_{self.rank}.csv")
 
     def mointor_cmd(self, command):
         print(f"MONITORING WITH CALLGRIND using cmd={command}")

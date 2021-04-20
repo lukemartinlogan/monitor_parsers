@@ -3,11 +3,12 @@ from abc import ABC, abstractmethod
 from shutil import which
 
 class Monitor(ABC):
-    def __init__(self, dir, refresh):
+    def __init__(self, dir, rank, refresh):
         self.dir = dir
         self.pid = None
         self.pidstr = None
         self.refresh = refresh
+        self.rank = rank
 
     def _exe_path(self, exe):
         return which(exe)
